@@ -39,7 +39,7 @@ const getAllBills = async (req, res) => {
 
   const bills = await result
 
-  const totalBills = await Job.countDocuments(queryObject)
+  const totalBills = await Bill.countDocuments(queryObject)
   const numOfPages = Math.ceil(totalBills / limit)
   res.json({ bills, totalBills, numOfPages })
 }
@@ -51,7 +51,7 @@ const getBill = async (req, res) => {
   })
 
   if (!bill) {
-    return res.status(404).json({ message: 'Job not found' })
+    return res.status(404).json({ message: 'Bill not found' })
   }
 
   res.json({ bill })
@@ -74,7 +74,7 @@ const updateBill = async (req, res) => {
     { new: true, runValidators: true }, //options'lar
   )
   if (!bill) {
-    return res.status(404).json({ message: 'Job not found' })
+    return res.status(404).json({ message: 'Bill not found' })
   }
 
   res.json({ bill })
@@ -86,7 +86,7 @@ const deleteBill = async (req, res) => {
     createdBy: req.user.userId,
   }) // filter
   if (!bill) {
-    return res.status(404).json({ message: 'Job not found' })
+    return res.status(404).json({ message: 'Bill not found' })
   }
   res.json({ bill })
 }
