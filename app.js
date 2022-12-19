@@ -24,6 +24,9 @@ app.use(xss())
 // extra packages
 
 // routes
+app.use('/', (req, res) => {
+  res.json({ msg: 'Hello World' })
+})
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/bills', auth, billsRouter)
 
