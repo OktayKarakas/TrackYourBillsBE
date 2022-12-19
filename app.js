@@ -24,14 +24,15 @@ app.use(xss())
 // extra packages
 
 // routes
-app.use('/', (req, res) => {
-  res.json({ msg: 'Hello World' })
-})
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/bills', auth, billsRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
+
+app.get("/",(req,res) => {
+  res.json({msg:"hello world"})
+})
 
 const port = process.env.PORT || 3000
 
