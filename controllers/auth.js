@@ -68,8 +68,17 @@ const updateUser = async (req, res) => {
   res.status(200).json({ success: true, data: user })
 }
 
+const updateCurrency = async (req, res) => {
+  const { currency } = req.user
+  const user = await User.findOneAndUpdate({ currency }, req.body, {
+    new: true,
+  })
+  res.status(200).json({ success: true, data: user })
+}
+
 module.exports = {
   updateUser,
   register,
   login,
+  updateCurrency,
 }
